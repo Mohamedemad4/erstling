@@ -31,3 +31,5 @@ after setting up a win image in your preferred VM of choice.
 - run ```catkin_make .``` then ```catkin_make install```
 - roslaunch catkin_ws/src/erstling/launch/nuke.launch (Todo)
 
+## Troubleshooting
+- if the Entire **cospace program quits** after starting the game that means that ai.c can't read/write the control files 

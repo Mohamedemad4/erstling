@@ -1,0 +1,4 @@
+<launch>
+  <param name="comms_dir" value="/home/daruis1/repos/erstling/winMachine/rescue_driver" />  
+  <node pkg="cospace2ros" type="main.py" name="cospace2ros"/>
+</launch>

@@ -3,6 +3,25 @@
 ## Why is it called Erstling?
 //todo
 
+## Reading Material 
+- [Rulebook](https://junior.robocup.org/wp-content/uploads/2019Rules/2019_RescueSimulation_Final.pdf)
+- [all vars explained](http://cospacerobot.org/documents/CSR-Rescue%202016%20Help%20(Secondary)/index.html#!advancedConditions)
+
+## Tasks!
+
+- Create a pkg that Published nav_msgs/odometery 
+    - sub to /cospace_state and integerate over WheelSpeedLeft and WheelSpeedRight to figure out our position and orientation 
+    - hint: use eular angles and compass then convert to quats. and pixels per second
+
+- Create a pkg that captures Video from the Virtual Machine then outputs visualization_msgs/Marker postions of Objects,SuperObjs and Deposit Locations
+
+- Create a Nav Package that takes odom and visualization_msgs/Marker of objs and Navigates the map
+    - Must be able to teleport 
+        - when to teleport? idk read the rules
+    - use the CS to pick points
+        - and do the dance in 
+    - use US to avoid absoticals 
+
 ## Installation
 you are going to need both Linux and Windows running on the same machine for this to work
 after setting up a win image in your preferred VM of choice.

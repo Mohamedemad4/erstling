@@ -1,6 +1,6 @@
 #ROS Stuff
 
-CMakeLists.txt
+/CMakeLists.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

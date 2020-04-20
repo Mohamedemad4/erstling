@@ -18,8 +18,10 @@ Solving a trivial Game meant to teach kids programming with cutting edge robotic
     - hint: use eular angles and compass then convert to quats. and pixels per second
 
 - Create a pkg that captures Video from the Virtual Machine then outputs visualization_msgs/Marker postions of Objects,SuperObjs and Deposit Locations
-    - check object_markers/notebooks/playground.ipynb for details about tasks
+    - check object_markers/notebooks/playground.ipynb for details about tasks and the actual Computer Vision Code
     - make it output a debug image with markers on everything
+    - write the actual ROS Code
+    
 - Create a Nav Package that takes odom and visualization_msgs/Marker of objs and Navigates the map
     - Must be able to teleport 
         - when to teleport? idk read the rules
@@ -46,6 +48,14 @@ after setting up a win image in your preferred VM of choice.
     ```
     WheelLeft=0;WheelRight=0;LED_1=0;MyState=0;Teleport=0;
     ```
+
+- Go to VM Settings -> Display -> Video Capture 
+    - VM capture
+        - Frame Size: 1024x768
+        - Highest quality 
+        - FPS to 15
+    - Cospace Rescue 
+        - Render -> Graphics Settings -> video Quailty -> Low
 
 - change the locations of the files read and written to in ```cospace2ros/cospace_project_files/ai.c``` (lines:163 and 176)
 - change ```comms_dir in cospace2ros/launch/cospace_ctrl.launch``` to the shared directory **Make sure to Remove the trailing Slash and make it a full path** 

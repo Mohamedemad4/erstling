@@ -4,8 +4,8 @@ from geometry_msgs.msg import Twist
 from cospace2ros.msg import cospace_state
 from state_pub import read_and_pub_vars
 
-max_lin_spd = .22*2 #arbitrary in m/s
-max_ang_spd = 2.84*2 #arbitrary in r/s
+max_lin_spd = .22 #arbitrary in m/s
+max_ang_spd = 2.84 #arbitrary in r/s
 max_whl_spd = 5
 
 

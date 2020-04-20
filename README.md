@@ -19,6 +19,7 @@ Solving a trivial Game meant to teach kids programming with cutting edge robotic
 
 - Create a pkg that captures Video from the Virtual Machine then outputs visualization_msgs/Marker postions of Objects,SuperObjs and Deposit Locations
     - check object_markers/notebooks/playground.ipynb for details about tasks
+    - make it output a debug image with markers on everything
 - Create a Nav Package that takes odom and visualization_msgs/Marker of objs and Navigates the map
     - Must be able to teleport 
         - when to teleport? idk read the rules

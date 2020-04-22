@@ -11,18 +11,26 @@ Solving a trivial Game meant to teach kids programming with cutting edge robotic
 
 ## Tasks!
 
-- Make cospace2ros Publish video from the vm
+- cospace2ros 
+    - Publish video from the vm
+        - check cospace2ros/state_pub.py for progress on that
 
-- Create a pkg that Published nav_msgs/odometery 
+- Odom_publisher
     - sub to /cospace_state and integerate over WheelSpeedLeft and WheelSpeedRight to figure out our position and orientation 
     - hint: use eular angles and compass then convert to quats. and pixels per second
 
-- Create a pkg that captures Video from the Virtual Machine then outputs visualization_msgs/Marker postions of Objects,SuperObjs and Deposit Locations
-    - check object_markers/notebooks/playground.ipynb for details about tasks and the actual Computer Vision Code
-    - make it output a debug image with markers on everything
+- object_markers (take video from the arena and convert it to useful markers)
     - write the actual ROS Code
-    
-- Create a Nav Package that takes odom and visualization_msgs/Marker of objs and Navigates the map
+        - write the frame reading from cospace_state code
+        - write the Marker Publisher code
+        - Write the frame_viz Publisher code
+    - check object_markers/notebooks/playground.ipynb for details about tasks and the actual Computer Vision Code
+
+    - ## V2 (better score)
+        - detect super objects
+        - detect swaps
+        - detect speical zones
+- Nav Package 
     - Must be able to teleport 
         - when to teleport? idk read the rules
     - use the CS to pick points

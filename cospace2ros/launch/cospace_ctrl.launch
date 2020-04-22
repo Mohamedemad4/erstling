@@ -1,4 +1,5 @@
 <launch>
   <param name="comms_dir" value="/home/daruis1/repos/erstling/winMachine/rescue_driver" />  
+  <param name="vcap_file" value="/home/daruis1/repos/erstling/winMachine/winCRescue.webm" />  
   <node pkg="cospace2ros" type="main.py" name="cospace2ros"/>
 </launch>

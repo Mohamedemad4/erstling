@@ -1,0 +1,37 @@
+norm_cam: #used to make shift the perspective as if we are looking from directly above the arena
+  #these are Opencv Pixel coordinates of the 4 corners of the arena 
+  pt_tl: [155,135]
+  pt_tr: [805,135]
+  pt_br: [940,625] #bottom right
+  pt_bl: [45,625] #bottom left
+  w: 570 #width and height of the perspective shifted image 
+  h: 570
+
+
+cyan:
+  up: [0,255,255] #upper RGB range of cyan
+  low: [0,30,30]  #lower RGB range of cyan
+  box_tolrance: 7 #how close to a box should we accept? after this value it discards it 
+  box_min_area: 50 #if the color has a smaller area it gets ignored
+  score: 30 #normal score (this used by the Nav Node)
+  score_special: 60 #score in special Zones 
+  
+red:
+  up: [255,0,0]
+  low: [10,0,0]
+  box_tolrance: 7
+  box_min_area: 100
+  score: 20
+  score_special: 40
+
+deposit:
+  up: [255, 200, 0]
+  low: [150, 150, 0]
+  box_tolrance: 150
+  box_min_area: 500
+
+traps:
+  up: [0,0,255]
+  low: [0,0,10]
+  box_tolrance: 10
+  box_min_area: 400

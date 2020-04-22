@@ -1,7 +1,17 @@
 #!/usr/bin/env python
+import cv2
 import time
 import rospy
 from cospace2ros.msg import cospace_state
+
+'''
+# check it -> https://github.com/eric-wieser/ros_numpy
+- the numpy thingy it needs it to be uint8 maybe try just an int8?
+- Test it with a moving video 
+- Write a tool that views frames from this msg type
+- delete winCrescue.webm on shutdown
+- Also why the FUCK is the shutdown Routine Garbage?
+'''
 #all the vars explained:http://cospacerobot.org/documents/CSR-Rescue%202016%20Help%20(Secondary)/index.html#!advancedConditions
 """
 all vars should look like this:
@@ -11,7 +21,7 @@ Teleport=0;LoadedObjects=0;US_Front=96;US_Left=38;US_Right=131;CSLeft_R=233;CSLe
 CSRight_G=217;CSRight_B=255;PositionX=0;PositionY=0;TM_State=1;Compass=0;Time=50;WheelLeft=2;WheelRight=2;LED_1=0;MyState=0;"""
 
 
-def read_and_pub_vars(comms_dir,cospace_state_pub):
+def read_and_pub_vars(comms_dir,vcap,cospace_state_pub):
     try:
         f=open(comms_dir+"/allvars.txt","r")
     except:
@@ -23,11 +33,18 @@ def read_and_pub_vars(comms_dir,cospace_state_pub):
         state_dict={i.split("=")[0]:int(i.split("=")[1]) for i in allvars.split(";") if len(i.split("="))==2}
     except:
         rospy.logfatal("Couldn't parse {0}/allvars.txt check it's in the format in cospace2ros/state_pub.py")
+    
+    ret,frame=vcap.read()
+    if ret:
+        state_dict["frame"]=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+    else:
+        rospy.logerr("Couldn't Capture frame at timestamp {0}".format(rospy.Time.now()))
     try:
         state_dict["clock"]
         publish_current_state(state_dict,cospace_state_pub) #pass the publisher object as an argument
 
-    except:
+    except KeyError:
+        import pdb;pdb.set_trace()
         rospy.logerr("Passed Publishing cospace_state at timestamp {0} ".format(rospy.Time().now()))
 
 
@@ -71,5 +88,9 @@ def publish_current_state(state_dict,cospace_state_pub):
     state.WheelRight=state_dict["WheelRight"]
     state.LED_1=state_dict["LED_1"]
     state.MyState=state_dict["MyState"]
-
+    try:
+        state.frame=state_dict["frame"]#).astype(np.uint8)
+        #print(state_dict["frame"])
+    except KeyError:
+        pass
     cospace_state_pub.publish(state)

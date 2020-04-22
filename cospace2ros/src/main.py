@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import cv2
 import rospy
 from geometry_msgs.msg import Twist
 from cospace2ros.msg import cospace_state
@@ -10,7 +11,9 @@ max_whl_spd = 5
 
 
 rospy.init_node('cospace2Ros', anonymous=True,log_level=rospy.WARN)
-comms_dir=rospy.get_param("comms_dir",'/home/daruis1/repos/erstling/winMachine/rescue_driver"')
+comms_dir=rospy.get_param("comms_dir",'/home/daruis1/repos/erstling/winMachine/rescue_driver')
+vcap_file=rospy.get_param("vcap_file",'/home/daruis1/repos/erstling/winMachine/winCRescue.webm')
+
 cospace_state_pub = rospy.Publisher('cospace_state', cospace_state, queue_size=1)
 
 state_pub_rate=rospy.Rate(15)
@@ -88,10 +91,14 @@ if __name__=="__main__":
     rospy.loginfo("Subscribing to cmd_vel")
     rospy.Subscriber("cmd_vel", Twist, twist_callback,queue_size=1)
     rospy.on_shutdown(shutdown)
+    rospy.loginfo("Started Video cap")
+    vcap=cv2.VideoCapture(vcap_file)
+    # does this make a dif.?
+    #vcap.set(cv2.CAP_PROP_BUFFERSIZE, 0)
     rospy.loginfo("Started State Publisher")
     while True:
         try:
-            read_and_pub_vars(comms_dir,cospace_state_pub)
+            read_and_pub_vars(comms_dir,vcap,cospace_state_pub)
             state_pub_rate.sleep() #cap it at 15hz
         except KeyboardInterrupt:
             pass

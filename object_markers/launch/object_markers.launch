@@ -1,0 +1,5 @@
+<launch>
+ <param name="config" type="string" value="$(find object_markers)/config/colors.yaml" />
+ <node pkg="object_markers" type="main.py" name="object_markers" output="screen"/>
+</launch>
+

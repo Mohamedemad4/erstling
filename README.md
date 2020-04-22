@@ -62,11 +62,14 @@ after setting up a win image in your preferred VM of choice.
         - Frame Size: 1024x768
         - Highest quality 
         - FPS to 15
+        - set the vidcap file location
     - Cospace Rescue 
         - Render -> Graphics Settings -> video Quailty -> Low
 
 - change the locations of the files read and written to in ```cospace2ros/cospace_project_files/ai.c``` (lines:163 and 176)
 - change ```comms_dir in cospace2ros/launch/cospace_ctrl.launch``` to the shared directory **Make sure to Remove the trailing Slash and make it a full path** 
+- change ```vcap_file in cospace2ros/launch/cospace_ctrl.launch``` to the vidcap file location **Make sure to Remove the trailing Slash and make it a full path** 
+
 - Upload the ai.c file to the Cospace Rescue Robot
 - create a catkin_ws with the project files inside src dir. (not src/erstling/cospace2ros, but src/cospace2ros)
 - copy the .git dir from erstling repo into the src dir in the catkin_ws (makes working and tracking changes easier)

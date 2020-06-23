@@ -12,6 +12,7 @@ find_package(
 	message_generation
 	std_msgs
 	rospy
+   sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -44,7 +45,8 @@ find_package(
 ##   * uncomment the add_*_files sections below as needed
 ##     and list every .msg/.srv/.action file to be processed
 ##   * uncomment the generate_messages entry below
-##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
+##   * add every package in MSG_DEP_SET to 
+#generate_messages(DEP)
 
 ## Generate messages in the 'msg' folder
 add_message_files(
@@ -70,7 +72,8 @@ add_message_files(
 generate_messages(
    DEPENDENCIES
    std_msgs  # Or other packages containing msgs
-   #   cospace2ros
+   cospace2ros
+   sensor_msgs
 )
 
 catkin_package(CATKIN_DEPENDS message_runtime)

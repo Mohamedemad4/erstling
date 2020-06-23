@@ -39,4 +39,4 @@ int8 WheelRight
 int8 LED_1 
 int8 MyState 
 
-uint8[] frame
+sensor_msgs/Image frame

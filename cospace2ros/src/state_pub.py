@@ -3,7 +3,11 @@ import sys
 import cv2
 import time
 import rospy
+import numpy as np
+from sensor_msgs.msg import Image
 from cospace2ros.msg import cospace_state
+from cv_bridge import CvBridge
+bridge = CvBridge()
 
 '''
 # check it -> https://github.com/eric-wieser/ros_numpy
@@ -87,8 +91,8 @@ def publish_current_state(state_dict,cospace_state_pub):
     state.LED_1=state_dict["LED_1"]
     state.MyState=state_dict["MyState"]
     try:
-        state.frame=state_dict["frame"]#).astype(np.uint8)
-        #print(state_dict["frame"])
+        image_message = bridge.cv2_to_imgmsg(state_dict["frame"], encoding="passthrough")
+        state.frame=image_message
     except KeyError:
         pass
     cospace_state_pub.publish(state)

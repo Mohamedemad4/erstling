@@ -160,7 +160,7 @@ DLL_EXPORT void OnTimer()
 
 int read_vars(){
    FILE *fptr;
-   if ((fptr = fopen("F:\\rescue_driver\\control_vars.txt","r")) == NULL){
+   if ((fptr = fopen("E:\\erstling\\comms_dir\\control_vars.txt","r")) == NULL){
        //Todo make it visible from the Debug menue in Cospace
        printf("Error! opening file");
        // Program exits if the file pointer returns NULL. the Entire Cospace program
@@ -173,7 +173,7 @@ int read_vars(){
 
 int write_vars(){
    FILE *fptr;
-   if ((fptr = fopen("F:\\rescue_driver\\allvars.txt","w")) == NULL){
+   if ((fptr = fopen("E:\\erstling\\comms_dir\\allvars.txt","w")) == NULL){
        //Todo make it visible from the Debug menue in Cospace
        printf("Error! opening file");
        // Program exits if the file pointer returns NULL. the Entire Cospace program

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys
 import cv2
 import time
 import rospy
@@ -20,19 +21,18 @@ clock=146;Duration=0;SuperDuration=0;bGameEnd=0;CurAction=-1;CurGame=0;SuperObj_
 Teleport=0;LoadedObjects=0;US_Front=96;US_Left=38;US_Right=131;CSLeft_R=233;CSLeft_G=246;CSLeft_B=255;CSRight_R=204;
 CSRight_G=217;CSRight_B=255;PositionX=0;PositionY=0;TM_State=1;Compass=0;Time=50;WheelLeft=2;WheelRight=2;LED_1=0;MyState=0;"""
 
-
 def read_and_pub_vars(comms_dir,vcap,cospace_state_pub):
     try:
-        f=open(comms_dir+"/allvars.txt","r")
+        f=open(comms_dir+"allvars.txt","r")
     except:
-        rospy.logfatal("Couldn't open {0}/allvars.txt for reading check comms_dir param".format(comms_dir))
-        exit(1)
+        rospy.logfatal("Couldn't open {0}allvars.txt for reading check comms_dir param".format(comms_dir))
+        sys.exit(1)
     allvars=f.read()
     f.close()
     try:
-        state_dict={i.split("=")[0]:int(i.split("=")[1]) for i in allvars.split(";") if len(i.split("="))==2}
+        state_dict={i.split("=")[0].replace("\n",""):int(i.split("=")[1]) for i in allvars.split(";") if len(i.split("="))==2}
     except:
-        rospy.logfatal("Couldn't parse {0}/allvars.txt check it's in the format in cospace2ros/state_pub.py")
+        rospy.logfatal("Couldn't parse {0}allvars.txt check it's in the format in cospace2ros/state_pub.py")
     
     ret,frame=vcap.read()
     if ret:
@@ -40,11 +40,9 @@ def read_and_pub_vars(comms_dir,vcap,cospace_state_pub):
     else:
         rospy.logerr("Couldn't Capture frame at timestamp {0}".format(rospy.Time.now()))
     try:
-        state_dict["clock"]
         publish_current_state(state_dict,cospace_state_pub) #pass the publisher object as an argument
 
     except KeyError:
-        import pdb;pdb.set_trace()
         rospy.logerr("Passed Publishing cospace_state at timestamp {0} ".format(rospy.Time().now()))
 
 

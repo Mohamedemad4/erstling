@@ -1,5 +1,6 @@
 <launch>
-  <param name="comms_dir" value="/home/daruis1/repos/erstling/winMachine/rescue_driver" />  
-  <param name="vcap_file" value="/home/daruis1/repos/erstling/winMachine/winCRescue.webm" />  
-  <node pkg="cospace2ros" type="main.py" name="cospace2ros"/>
+  <param name="comms_dir" value="/mnt/e/erstling/comms_dir/" />  
+  <param name="ffmpeg_path" value="/mnt/e/erstling/ffmpeg-20200620-29ea4e1-win64-static/bin/ffmpeg.exe"/>
+  <param name="rtsp_server" value="$(find cospace2ros)/msc/rtsp-simple-server"/>
+  <node pkg="cospace2ros" type="main.py" name="cospace2ros" output="screen"/>
 </launch>

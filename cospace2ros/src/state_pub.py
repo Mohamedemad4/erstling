@@ -9,14 +9,6 @@ from cospace2ros.msg import cospace_state
 from cv_bridge import CvBridge
 bridge = CvBridge()
 
-'''
-# check it -> https://github.com/eric-wieser/ros_numpy
-- the numpy thingy it needs it to be uint8 maybe try just an int8?
-- Test it with a moving video 
-- Write a tool that views frames from this msg type
-- delete winCrescue.webm on shutdown
-- Also why the FUCK is the shutdown Routine Garbage?
-'''
 #all the vars explained:http://cospacerobot.org/documents/CSR-Rescue%202016%20Help%20(Secondary)/index.html#!advancedConditions
 """
 all vars should look like this:
@@ -91,7 +83,8 @@ def publish_current_state(state_dict,cospace_state_pub):
     state.LED_1=state_dict["LED_1"]
     state.MyState=state_dict["MyState"]
     try:
-        image_message = bridge.cv2_to_imgmsg(state_dict["frame"], encoding="passthrough")
+        img = cv2.cvtColor(state_dict["frame"], cv2.COLOR_BGR2RGB)
+        image_message = bridge.cv2_to_imgmsg(img, encoding="passthrough")
         state.frame=image_message
     except KeyError:
         pass

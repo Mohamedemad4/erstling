@@ -1,9 +1,9 @@
 norm_cam: #used to make shift the perspective as if we are looking from directly above the arena
   #these are Opencv Pixel coordinates of the 4 corners of the arena 
-  pt_tl: [155,135]
-  pt_tr: [805,135]
-  pt_br: [940,625] #bottom right
-  pt_bl: [45,625] #bottom left
+  pt_tl: [370,150]
+  pt_tr: [1155,150]
+  pt_br: [1315,740] 
+  pt_bl: [235,745]
   w: 570 #width and height of the perspective shifted image 
   h: 570
 
